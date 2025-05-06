@@ -13,25 +13,18 @@ export default function CreateUrl() {
   const [error, setError] = useState('');
   const [urlHistory, setUrlHistory] = useState<UrlHistoryItem[]>([]);
 
-  interface EncodeUrlResponse {
-    data: {
-      shortUrl: string;
-    };
-  }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
     try {
-      const response: EncodeUrlResponse = await encodeUrl(longUrl);
-      const newShortUrl = response.data.shortUrl;
-      setShortUrl(newShortUrl);
+      const {shortUrl} = await encodeUrl(longUrl);
+      setShortUrl(shortUrl);
       setError('');
       
       // Add to history
       setUrlHistory(prev => [
         {
           longUrl,
-          shortUrl: newShortUrl,
+          shortUrl,
           createdAt: new Date().toLocaleString()
         },
         ...prev
