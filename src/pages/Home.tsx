@@ -1,13 +1,13 @@
 import CreateUrl from "../components/CreateUrl";
+import RootLayout from "../components/RootLayout";
 
 const Home = () => {
   return (
-    <div className="h-screen flex flex-col justify-center items-center">
-      <div>
-      <h1>URL Shortener</h1>
+    <RootLayout >
+      <div className="card flex flex-col justify-center items-center my-24 w-full rounded-lg bg-slate-100 shadow-md">
       <CreateUrl />
     </div>
-    </div>
+    </RootLayout>
   );
 };
 
